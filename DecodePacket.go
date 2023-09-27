@@ -23,7 +23,8 @@ func decodePacket(packet []byte) (DecodedStruct, error) {
 
 	var decoded DecodedStruct
 
-	reader := binary.LittleEndian
+	reader := binary.BigEndian // Use LittleEndian for consistent parsing
+
 	offset := 0
 
 	if err := binary.Read(bytes.NewReader(packet[offset:offset+2]), reader, &decoded.Short1); err != nil {
@@ -68,5 +69,6 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Decoded struct: %+v\n", decoded)
+	fmt.Printf("Decoded struct: {%d, \"%s\", %d, \"%s\", %d, \"%s\", %d}\n",
+		decoded.Short1, decoded.Chars1, decoded.Byte1, decoded.Chars2, decoded.Short2, decoded.Chars3, decoded.Long1)
 }
