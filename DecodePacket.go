@@ -23,7 +23,7 @@ func decodePacket(packet []byte) (DecodedStruct, error) {
 
 	var decoded DecodedStruct
 
-	reader := binary.BigEndian // Use LittleEndian for consistent parsing
+	reader := binary.BigEndian 
 
 	offset := 0
 
